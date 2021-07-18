@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        body{
+
+            font-family: 'Do Hyeon', sans-serif;
+        }
+        h2,h1{
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+        .table{
+            width: 300px;
+            font-size: 20px;
+        }
+        .image{
+            margin-top: 30px;
+        }
+        .btn{
+            margin-left: 300px;
+        }
+    </style>
+
+    <script>
+        function update(){
+            let status = $('#post-box').css('display');
+            console.log(status);
+            if(status=='block'){
+                $('#post-box').hide();
+                $('#btn-posting-box').text('포스팅박스 열기');
+
+            }
+            else{
+                $('#post-box').show();
+                $('#btn-posting-box').text('포스팅박스 닫기');
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+    <h1>MYPAGE</h1>
+    <hr>
+    <h2 class="Profile">diana님 회원정보</h2>
+    <div style="float:right; margin-right: 400px;">
+        <h5>최초체형</h5>
+        <img src="체형.jpg">
+    </div>
+    <div style="float:right;margin-right: 50px;">
+        <h5>최초자세</h5>
+        <img src="자세.jpg">
+    </div>
+    <div style="margin-left: 300px; margin-top: 50px">
+        <table class="table">
+            <thead>
+            <tr>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ID</td>
+                <td>diana</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td> Moe</td>
+            </tr>
+            <tr>
+                <td>Singup Date</td>
+                <td> 2021-07-15</td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td>162</td>
+            </tr>
+            <tr>
+                <td>Weight</td>
+                <td>54</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <a onclick="update">
+        <button type="button" class="btn btn-info btn" >신체정보업데이트</button>
+    </a>
+    <img src="linkedin_banner_image_2.jpg" width="100%" class="image">
+
+</body>
+
+</html>
