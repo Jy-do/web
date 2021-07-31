@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,7 @@
             height: 100px;
         }
         .title{
-            margin: auto;
+            margin: 20px auto 20px auto;
             text-align: center;
         }
         .year{
@@ -116,7 +118,6 @@
 </head>
 <body>
 <div class="title">
-    <img align="center" src="nbm.png" alt="..." class="logo" style="vertical-align:middle;">
     <span style="font-size: 40px">Exercise Calendar</span>
 </div>
 
@@ -144,3 +145,4 @@
 </script>
 </body>
 </html>
+{% endblock %}

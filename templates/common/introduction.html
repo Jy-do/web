@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,15 +13,16 @@
         }
         .title{
             font-size: 45px;
-            padding-top: 23px;
+            padding-top: 30px;
+            padding-bottom: 20px;
         }
-        .box {
+        .top {
             width: 800px;
-            margin: auto;
+            margin: 20px auto -10px auto;
         }
         .text {
             width: 800px;
-            margin: 0px auto 20px auto;
+            margin: 0px auto 0px auto;
             border-style: solid;
             padding: 30px;
             border-radius: 5px;
@@ -34,16 +37,21 @@
             height: 100px;
         }
         .main_img{
-            width: 800px;
+            width: 750px;
             height: 400px;
+            padding-bottom: 20px;
         }
+
+
     </style>
 </head>
 <body>
 <div>
-    <div class="box">
-        <img src="nbm.png" alt="..." class="logo">
-        <h1 class="title">스마트미러란</h1>
+    <div>
+        <div class="top">
+            <img src="https://mblogthumb-phinf.pstatic.net/MjAyMTA3MjdfMTc0/MDAxNjI3MzYzMDAyODQw.fobERqewZgDhGtz0a4zUMO8pANxOQdKJ7F974EaagRwg.CwWRk4nG4LxnyQcvYeMF_KN60W4eob9l6sl1qmr_0vAg.PNG.jeeyulee98/1627362922964.png?type=w800" alt="..." class="logo">
+            <h1 class="title">스마트미러란</h1>
+        </div>>
         <div class="text">
             <img src="https://funshop.akamaized.net/abroad/027/13713/Ayi%20Smart%20mirror%203_1.jpg" alt="..." class="main_img">
             <h2 class="following">스마트미러는 단순한 거울이 아닙니다. 언제든 거울로써 활용이 가능한 기능 제공됨과 동시에 눈바디를 확인할 수 있습니다.
@@ -53,6 +61,8 @@
             </h2>
         </div>
     </div>
+
 </div>
 </body>
 </html>
+{% endblock %}

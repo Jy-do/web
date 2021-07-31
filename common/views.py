@@ -20,3 +20,13 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
+
+def rankingpage(request):
+    return render(request, 'common/ranking.html')
+
+def introductionpage(request):
+    return render(request, 'common/introduction.html')
+def calendarpage(request):
+    return render(request, 'common/calendar.html')
+def mypage(request):
+    return render(request, 'common/mypage.html')
