@@ -31,12 +31,12 @@
             <div class="id">
                 <label for="username">사용자ID</label>
                 <input type="text" class="form-control" name="username" id="username"
-                       value="{{ form.username.value|default_if_none:'' }}">
+                       value="{{ forms.username.value|default_if_none:''}}">
             </div>
             <div class="pw">
                 <label for="password">비밀번호</label>
                 <input type="password" class="form-control" name="password" id="password"
-                       value="{{ form.password.value|default_if_none:'' }}">
+                       value="{{ forms.password.value|default_if_none:''}}">
             </div>
             <button type="submit" class="btn btn-primary">로그인</button>
             <span>또는 <a href="{% url 'common:signup' %}">계정을 만드세요.</a></span>

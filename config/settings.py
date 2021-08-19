@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import os, json, sys
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ls&1oied3t*np!^y6664m!j2-l%ie=8g$w-bjk_pjryzd#3y6b'
+
+secret_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'secrets.json') # secrets.json 파일 위치를 명시
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +54,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION= 'none'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,8 +107,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mirror',
+        'USER': 'admin',
+        'PASSWORD': get_secret("DATABASE"),
+        'HOST': get_secret("HOST"),
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
@@ -127,3 +164,4 @@ STATICFILES_DIRS = [
 # 로그인/로그아웃 성공후 이동하는 URL
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
